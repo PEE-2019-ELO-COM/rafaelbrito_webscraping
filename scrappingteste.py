@@ -1,4 +1,6 @@
-
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
 from selenium import webdriver
 import time
 from IATAcodes import codes
@@ -22,12 +24,13 @@ print("Data de volta:")
 datago = input()
 
 lista_opcoes = []
+bestop1 = []
 bestop = lista_opcoes
 bestprice = 100000
 
 while(True):   
     
-    driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Programas\rafaelbrito_webscraping-master\geckodriver.exe')
+    driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Desktop\afins\geckodriver.exe')
     
     url = 'https://www.decolar.com/shop/flights/search/roundtrip/{}/{}/{}/{}/1/0/0/NA/NA/NA/NA/NA/?from=SB&di=1-0'.format(getIATA(cityexit, codes),getIATA(citygo, codes),dataexit,datago)
     
@@ -62,5 +65,44 @@ while(True):
     
     #mostra melhor opcao
     bestop = lista_opcoes[index]
+        
+    
     print("A melhor opcao atual é:" + str(bestop))
-    time.sleep(15)
+    
+    #alertas
+    if bestop != bestop1:
+        print('\a')
+        # create message object instance
+        msg = MIMEMultipart()
+         
+         
+        message = str(bestop)
+         
+        # setup the parameters of the message
+        password = "kakashi9495"
+        msg['From'] = "binkssake2@gmail.com"
+        msg['To'] = "rafaelsbrito21@gmail.com"
+        msg['Subject'] = "Hey, tem passagem melhor!"
+         
+        # add in the message body
+        msg.attach(MIMEText(message, 'plain'))
+         
+        #create server
+        server = smtplib.SMTP('smtp.gmail.com: 587')
+         
+        server.starttls()
+         
+        # Login Credentials for sending the mail
+        server.login(msg['From'], password)
+         
+         
+        # send the message via the server.
+        server.sendmail(msg['From'], msg['To'], msg.as_string())
+         
+        server.quit()
+         
+        print ("successfully sent email to %s:" % (msg['To']))
+        
+        bestop1 = bestop
+    
+time.sleep(15)
