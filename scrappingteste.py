@@ -27,7 +27,7 @@ bestprice = 100000
 
 while(True):   
     
-    driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Desktop\afins\geckodriver.exe')
+    driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Programas\rafaelbrito_webscraping-master\geckodriver.exe')
     
     url = 'https://www.decolar.com/shop/flights/search/roundtrip/{}/{}/{}/{}/1/0/0/NA/NA/NA/NA/NA/?from=SB&di=1-0'.format(getIATA(cityexit, codes),getIATA(citygo, codes),dataexit,datago)
     
