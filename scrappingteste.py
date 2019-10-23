@@ -67,7 +67,7 @@ while(True):
     bestop = lista_opcoes[index]
         
     
-    print("A melhor opcao atual é:" + str(bestop))
+    print("A melhor opcao atual tem preço " + str(bestop["preco"]) + " reais, na ida pela " + str(bestop["comapanhia_ida"]) + " com horários de chegada e partida respectivamente " + str(bestop["chegada_ida"]) + " e " + str(bestop["saida_ida"]) + ". A volta é pela " + str(bestop["companhia_volta"]) + " com horarios de chegada e saida " + str(bestop["chegada_volta"]) + " e " + str(bestop["saida_volta"]))
     
     #alertas
     if bestop != bestop1:
@@ -76,11 +76,11 @@ while(True):
         msg = MIMEMultipart()
          
          
-        message = str(bestop)
+        message = str("A melhor opcao atual tem preço " + str(bestop["preco"]) + " reais, na ida pela " + str(bestop["comapanhia_ida"]) + " com horários de chegada e partida respectivamente " + str(bestop["chegada_ida"]) + " e " + str(bestop["saida_ida"]) + ". A volta é pela " + str(bestop["companhia_volta"]) + " com horarios de chegada e saida " + str(bestop["chegada_volta"]) + " e " + str(bestop["saida_volta"]))
          
         # setup the parameters of the message
-        password = "kakashi9495"
-        msg['From'] = "binkssake2@gmail.com"
+        password = "passagem112358"
+        msg['From'] = "passagem.melhor@gmail.com"
         msg['To'] = "rafaelsbrito21@gmail.com"
         msg['Subject'] = "Hey, tem passagem melhor!"
          
