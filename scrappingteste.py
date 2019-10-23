@@ -79,8 +79,8 @@ while(True):
         message = str(bestop)
          
         # setup the parameters of the message
-        password = "kakashi9495"
-        msg['From'] = "binkssake2@gmail.com"
+        password = "passagem112358"
+        msg['From'] = "passagem.melhor@gmail.com"
         msg['To'] = "rafaelsbrito21@gmail.com"
         msg['Subject'] = "Hey, tem passagem melhor!"
          
