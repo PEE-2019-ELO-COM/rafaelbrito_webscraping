@@ -101,7 +101,7 @@ while(True):
          
         server.quit()
          
-        print ("successfully sent email to %s:" % (msg['To']))
+        print ("E-mail enviado com sucesso para %s:" % (msg['To']))
         
         bestop1 = bestop
     
