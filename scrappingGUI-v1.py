@@ -12,12 +12,6 @@ from selenium import webdriver
 import time
 from IATAcodes import codes
 
-def set_text(text):
-    log.delete(0,END)
-    log.insert(0,text)
-    return
-
-
 
 def getIATA(name, valores):    
     res = list(filter(lambda el: el['name'] == name, valores))
@@ -40,6 +34,8 @@ def rodando():
     bestop = lista_opcoes
     bestop1 = []
     bestprice = 100000
+    index = 0
+	
     while(True):   
         try:
             driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Desktop\afins\geckodriver.exe')
@@ -53,16 +49,18 @@ def rodando():
                 op = {}
                 try:    
                     op["preco"] = int(driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[2]/fare/span/span/fare-details-items/div/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]""".format(i)).text.replace('.', ''))
-                    op["comapanhia_ida"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[1]/route-choice/ul/li/route/itinerary/div/div/div[1]/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]/span""".format(i)).text
+                    op["comapanhia_ida"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/div/div[1]/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span/span[2]/span""".format(i)).text
                     op["saida_ida"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/div/div[2]/itinerary-element[1]/span/span/span""".format(i)).text
                     op["chegada_ida"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[1]/route-choice/ul/li[1]/route/itinerary/div/div/div[3]/itinerary-element[1]/span/span/span/span""".format(i)).text
-                    op["companhia_volta"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[2]/route-choice/ul/li/route/itinerary/div/div/div[1]/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span[2]/span""".format(i)).text
+                    op["companhia_volta"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[2]/route-choice/ul/li/route/itinerary/div/div/div[1]/itinerary-element[2]/span/itinerary-element-airline/span/span/span/span/span[2]/span""".format(i)).text
                     op["saida_volta"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[2]/route-choice/ul/li[1]/route/itinerary/div/div/div[2]/itinerary-element[1]/span/span/span""".format(i)).text
                     op["chegada_volta"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[2]/route-choice/ul/li[1]/route/itinerary/div/div/div[3]/itinerary-element[1]/span/span/span/span""".format(i)).text
 
                     lista_opcoes.append(op)
+                    #print('Nova Opcao')
 
-                except:
+                except Exception as e:
+                    #print(e)
                     break
 
             driver.close()
