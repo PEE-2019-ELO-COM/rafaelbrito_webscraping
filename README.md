@@ -3,7 +3,7 @@ Web scraping de passagens aéreas de um site de compra de passagens (mais especi
 
 # Informações gerais:
 
-A ideia é entrar com a data e a localidade que deseja ir, será feito uma comparação de preços e será enviado um aviso quando existir uma queda nos preços. Essa notificação a priori é feita no pelo e-mail que se insere! Aparece também as melhores opções de voo em um log na linha de comando, se quiser visualmente checar as iterações do programa. Atualizações como notificações pelo WhatsApp estão sendo implementadas já em um código que existe no repositório, bastando acertar um jeito de manter o WhatsApp aberto pelo WhatsApp Web de forma mais automatizada do que a conferência via QRcode sempre. Já existe também um código compatível com o Chrome/Chromium, cuja finalidade é conseguir fazer o programa rodar em um Rasp Berry indefinidamente (não precisando deixar a aplicação rodando no seu computador), mas existe algum problema de inicialização do navegador do Chromium que precisa ser resolvido ainda.
+A ideia é entrar com a data e a localidade que deseja ir, será feito uma comparação de preços e será enviado um aviso quando existir uma queda nos preços. Essa notificação a priori é feita pelo e-mail que se insere! Aparece também as melhores opções de voo em um log na linha de comando, se quiser visualmente checar as iterações do programa. Atualizações como notificações pelo WhatsApp estão sendo implementadas já em um código que existe no repositório, bastando acertar um jeito de manter o WhatsApp aberto pelo WhatsApp Web de forma mais automatizada do que a conferência via QRcode sempre. Já existe também um código compatível com o Chrome/Chromium, cuja finalidade é conseguir fazer o programa rodar em um Rasp Berry indefinidamente (não precisando deixar a aplicação rodando no seu computador), mas existe algum problema de inicialização do navegador do Chromium que precisa ser resolvido ainda.
 
 A motivação dessa aplicação é a dificuldade de um familiar em encontrar passagens aéreas para fazer suas viagens, que acaba sendo um transtorno em casa (no caso recai sobre mim).
 
@@ -36,14 +36,14 @@ Para que o programa rode perfeitamente, devemos seguir alguns passos:
 
 De forma bem intuitiva, preencha a tela da aplicação. Coloque as cidades com letra maiúscula e preste atenção ao formato das datas que deve seguir o formato ANO-MÊS-DIA.
 
-<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/git1.PNG">
+![alt test](imgs/git1.PNG)
 
 Agora basta esperar que ele mostrará no terminal a melhor opção encontrada naquele loop e caso seja a primeira, ou uma melhor do que ele já havia computado, ele mandará um email e no terminal uma confirmação para qual e-mail foi enviado.
 
-<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/git2.PNG">
+![alt test](imgs/git2.PNG)
 
 O e-mail terá o seguinte formato:
 
-<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/GIT3.PNG">
+![alt test](imgs/GiT3.PNG)
 
 Caso queira mudar o conteúdo da mensagem, basta com que se altere esse setup e a mensagem na parte de ALERTAS do código.
