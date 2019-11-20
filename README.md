@@ -1,5 +1,5 @@
 # rafaelbrito_webscraping
-web scraping de passagens aéreas de um site de compra de passagens (mais especificamente, o site da Decolar).
+Web scraping de passagens aéreas de um site de compra de passagens (mais especificamente, o site da Decolar).
 
 # Informações gerais:
 
@@ -17,6 +17,7 @@ O repositório contém de essencial para a aplicação:
  - chromedriver.exe, o driver para a aplicação do Chrome.
  - scrappingGUI-v1.py, que é o programa rodando no navegador do FireFox.
  - geckodriver.exe, o driver para aplicação do FireFox.
+ 
 De resto temos algumas prints do que seria o programa rodando em printRodando.docx e printRodandoGUI.docx, os logs dos drivers e um arquivo do jupyter já com início da implementação da mensagem por WhatsApp.
 
 # Ajustes e instalações adicionais:
@@ -34,9 +35,15 @@ Para que o programa rode perfeitamente, devemos seguir alguns passos:
 # Rodando o programa:
 
 De forma bem intuitiva, preencha a tela da aplicação. Coloque as cidades com letra maiúscula e preste atenção ao formato das datas que deve seguir o formato ANO-MÊS-DIA.
-IMG git 1
+
+<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/git1.PNG">
+
 Agora basta esperar que ele mostrará no terminal a melhor opção encontrada naquele loop e caso seja a primeira, ou uma melhor do que ele já havia computado, ele mandará um email e no terminal uma confirmação para qual e-mail foi enviado.
-IMG git 2
+
+<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/git2.PNG">
+
 O e-mail terá o seguinte formato:
-IMG git 3
+
+<img src = "https://github.com/PEE-2019-ELO-COM/rafaelbrito_webscraping/tree/master/imgs/GIT3.PNG">
+
 Caso queira mudar o conteúdo da mensagem, basta com que se altere esse setup e a mensagem na parte de ALERTAS do código.
