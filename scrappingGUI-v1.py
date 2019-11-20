@@ -3,7 +3,7 @@
 
 # In[3]:
 
-
+#Bibliotecas necessárias:
 import tkinter as tk
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -13,11 +13,12 @@ import time
 from IATAcodes import codes
 
 
+#Retorna o código IATA da cidade
 def getIATA(name, valores):    
     res = list(filter(lambda el: el['name'] == name, valores))
     return res[0]['IATA']
 
-
+#Pega infos do site
 def get_info():
     global citysaida, citydestino, datasaida, dataida, useremail
     citysaida = cityexit.get()
@@ -27,7 +28,7 @@ def get_info():
     useremail = email.get()
 
 
-
+#Aplicação rodando no geral
 def rodando():
     master.update()
     lista_opcoes = []
@@ -37,15 +38,15 @@ def rodando():
     index = 0
 	
     while(True):   
-        try:
-            driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Desktop\afins\geckodriver.exe')
+        try:    #Abre o Firefox na página requisitada e espera 15 segundos a mesma inicializar
+            driver = webdriver.Firefox(executable_path=r'C:\Users\binks\Desktop\rafaelbrito_webscraping-master\geckodriver.exe') #ACERTE AQUI O PATH DO DRIVER QUE VAI UTILIZAR (no caso do geckodriver para Firefox)
 
             url = 'https://www.decolar.com/shop/flights/search/roundtrip/{}/{}/{}/{}/1/0/0/NA/NA/NA/NA/NA/?from=SB&di=1-0'.format(getIATA(citysaida, codes),getIATA(citydestino, codes),datasaida,dataida)
             driver.get(url)
 
-            time.sleep(8)
+            time.sleep(15) #acerte o tempo para que a página seja completamente carregada
 
-            for i in range(1,10):
+            for i in range(1,10): #coleta as 10 primeiras passagens do site pelos seus X_PATH do html
                 op = {}
                 try:    
                     op["preco"] = int(driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[2]/fare/span/span/fare-details-items/div/item-fare/p/span/flights-price/span/flights-price-element/span/span/em/span[2]""".format(i)).text.replace('.', ''))
@@ -57,7 +58,7 @@ def rodando():
                     op["chegada_volta"] = driver.find_element_by_xpath("""/html/body/div[10]/div/div/div/div[3]/div/div[2]/div/div[5]/app-root/app-common/items/div/span[{}]/span/cluster/div/div/div[1]/div/span/div/div/span[2]/route-choice/ul/li[1]/route/itinerary/div/div/div[3]/itinerary-element[1]/span/span/span/span""".format(i)).text
 
                     lista_opcoes.append(op)
-                    #print('Nova Opcao')
+                    
 
                 except Exception as e:
                     #print(e)
@@ -65,7 +66,7 @@ def rodando():
 
             driver.close()
 
-
+			
             #pega melhor opcao do site
             for i in range(0,len(lista_opcoes)):
                 if bestprice > lista_opcoes[i]['preco']:
@@ -78,15 +79,19 @@ def rodando():
             print("A melhor opcao atual tem preço " + str(bestop["preco"]) + " reais, na ida pela " + str(bestop["comapanhia_ida"]) + " com horários de chegada e partida respectivamente " + str(bestop["chegada_ida"]) + " e " + str(bestop["saida_ida"]) + ". A volta é pela " + str(bestop["companhia_volta"]) + " com horarios de chegada e saida " + str(bestop["chegada_volta"]) + " e " + str(bestop["saida_volta"]))
 
             #alertas
+			
             if bestop != bestop1:
+				#Alerta sonoro no computador!
                 print('\a')
+				
+				#Alerta pelo email colocado no inicio do programa
                 # create message object instance
                 msg = MIMEMultipart()
 
-
+				#Mensagem que é enviada
                 message = str("A melhor opcao atual tem preço " + str(bestop["preco"]) + " reais, na ida pela " + str(bestop["comapanhia_ida"]) + " com horários de chegada e partida respectivamente " + str(bestop["chegada_ida"]) + " e " + str(bestop["saida_ida"]) + ". A volta é pela " + str(bestop["companhia_volta"]) + " com horarios de chegada e saida " + str(bestop["chegada_volta"]) + " e " + str(bestop["saida_volta"]) + "./n")
 
-                # setup the parameters of the message
+                # Setup do email que enviará as infos
                 password = "passagem112358"
                 msg['From'] = "passagem.melhor@gmail.com"
                 msg['To'] = str(useremail)
@@ -117,10 +122,11 @@ def rodando():
             
         
         except:
+		#Fecha o driver e recomeça
             driver.close()
             continue
 
-
+#Tela do programa, GUI em Tkinter
 
 master = tk.Tk()
 tk.Label(master, text="Cidade de saída").grid(row=0)
