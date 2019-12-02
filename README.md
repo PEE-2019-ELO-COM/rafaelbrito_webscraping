@@ -20,7 +20,16 @@ O repositório contém de essencial para a aplicação:
  
 De resto temos algumas prints do que seria o programa rodando em printRodando.docx e printRodandoGUI.docx, os logs dos drivers e um arquivo do jupyter já com início da implementação da mensagem por WhatsApp.
 
+# Fluxograma do programa:
+
+Possui caráter bastante intuitivo de utilização, basicamente segue o fluxograma abaixo indefinidamente.
+
+![alt test](imgs/fluxograma.PNG)
+
+Mais abaixo você poderá ver a tela de programa e averiguar como é simples a utilização. Basicamente se insere as informações, dá o check da confirmação dos dados (Enviar Infos) e feito isso o põe para rodar (RUN).
+
 # Ajustes e instalações adicionais:
+
 
 Para que o programa rode perfeitamente, devemos seguir alguns passos:
 
